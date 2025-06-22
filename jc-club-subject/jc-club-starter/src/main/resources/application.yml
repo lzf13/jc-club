@@ -1,0 +1,39 @@
+server:
+  port: 3000
+
+spring:
+  output:
+    ansi:
+      enabled: always  # 强制启用ANSI颜色
+
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://117.72.196.209:3306/jc-club?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 20
+      min-idle: 20
+#      connectionProperties: config.decrypt=true;config.decrypt.key=${privateKey};
+      max-active: 100
+      max-wait: 60000
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 2000
+        wall:
+          enabled: true
+        config:
+          enabled: true
+
+
+mybatis:
+  mapper-locations: classpath*:mapper/**/*.xml  # 根据实际路径调整
+  type-aliases-package: com.lzf.subject.infra.basic.entity  # 实体类包路径
