@@ -81,5 +81,27 @@ public class SubjectCategoryDomainServiceImpl implements SubjectCategoryDomainSe
         return count > 0;
     }
 
+    /**
+     * 删除分类
+     *
+     * @param subjectCategoryBO
+     * @return
+     */
+    @Override
+    public Boolean delete(SubjectCategoryBO subjectCategoryBO) {
+        SubjectCategory subjectCategory = SubjectCategoryConverter.INSTANCE
+                .convertBoToCategory(subjectCategoryBO);
+
+        subjectCategory.setIsDeleted(IsDeletedFlagEnum.DELETED.getCode());
+
+        int count = subjectCategoryService.update(subjectCategory);
+        return count > 0;
+    }
+
+
+
 
 }
+
+
+
