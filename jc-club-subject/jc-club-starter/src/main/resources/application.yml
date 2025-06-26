@@ -33,6 +33,8 @@ spring:
         config:
           enabled: true
 
+logging:
+  config: classpath:log4j2-spring.xml
 
 mybatis:
   mapper-locations: classpath*:mapper/**/*.xml  # 根据实际路径调整
