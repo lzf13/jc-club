@@ -17,7 +17,7 @@ public interface SubjectInfoDomainService {
      * 新增题目
      * @param subjectInfoBO
      */
-    Boolean add(SubjectInfoBO subjectInfoBO);
+    void add(SubjectInfoBO subjectInfoBO);
 
 
 }

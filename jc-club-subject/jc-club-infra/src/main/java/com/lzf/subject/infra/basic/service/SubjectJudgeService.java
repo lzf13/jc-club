@@ -2,6 +2,8 @@ package com.lzf.subject.infra.basic.service;
 
 import com.lzf.subject.infra.basic.entity.SubjectJudge;
 
+import java.util.List;
+
 /**
  * 判断题(SubjectJudge)表服务接口
  *

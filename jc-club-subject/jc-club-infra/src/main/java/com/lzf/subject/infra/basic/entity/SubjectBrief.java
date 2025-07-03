@@ -13,7 +13,6 @@ import java.io.Serializable;
  */
 @Data
 public class SubjectBrief implements Serializable {
-    private static final long serialVersionUID = -47260453541652851L;
 /**
      * 主键
      */
@@ -21,7 +20,7 @@ public class SubjectBrief implements Serializable {
 /**
      * 题目id
      */
-    private Integer subjectId;
+    private Long subjectId;
 /**
      * 题目答案
      */

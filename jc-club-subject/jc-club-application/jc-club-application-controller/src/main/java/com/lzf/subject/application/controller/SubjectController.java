@@ -11,6 +11,7 @@ import com.lzf.subject.common.entity.Result;
 import com.lzf.subject.domain.entity.SubjectAnswerBO;
 import com.lzf.subject.domain.entity.SubjectCategoryBO;
 import com.lzf.subject.domain.entity.SubjectInfoBO;
+import com.lzf.subject.domain.service.SubjectInfoDomainService;
 import com.lzf.subject.infra.basic.entity.SubjectCategory;
 import com.lzf.subject.infra.basic.service.SubjectCategoryService;
 import jakarta.annotation.Resource;
@@ -40,6 +41,9 @@ public class SubjectController {
     @Autowired
     private SubjectAnswerDTOConverter subjectAnswerDTOConverter;
 
+    @Resource
+    private SubjectInfoDomainService subjectInfoDomainService;
+
     /**
      * 新增题目
      * @param subjectInfoDTO
@@ -61,16 +65,15 @@ public class SubjectController {
             Preconditions.checkArgument(!CollectionUtils.isEmpty(subjectInfoDTO.getLabelIds())
                     , "标签id不能为空");
 
-            SubjectInfoBO subjectInfoBO =
-                    SubjectInfoDTOConverter.INSTANCE.convertDTOToBO(subjectInfoDTO);
-            List<SubjectAnswerBO> subjectAnswerBOS = subjectAnswerDTOConverter.convertListDTOToBO(subjectInfoDTO.getOptionList());
+            SubjectInfoBO subjectInfoBO = SubjectInfoDTOConverter.INSTANCE.convertDTOToBO(subjectInfoDTO);
+            List<SubjectAnswerBO> subjectAnswerBOS =
+                    SubjectAnswerDTOConverter.INSTANCE.convertListDTOToBO(subjectInfoDTO.getOptionList());
             subjectInfoBO.setOptionList(subjectAnswerBOS);
-
-
-            subjectCategoryDomainService.add(subjectCategoryBO);
+            subjectInfoDomainService.add(subjectInfoBO);
             return Result.ok(true);
         } catch (Exception e) {
-            return Result.fail(e.getMessage());
+            log.error("SubjectCategoryController.add.error:{}", e.getMessage(), e);
+            return Result.fail("新增题目失败");
         }
 
     }

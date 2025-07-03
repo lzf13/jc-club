@@ -39,7 +39,7 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
      * @param subjectInfoBO
      */
     @Override
-    public Boolean add(SubjectInfoBO subjectInfoBO) {
+    public void add(SubjectInfoBO subjectInfoBO) {
         if (log.isInfoEnabled()) {
             log.info("SubjectController.add.bo:{}", JSON.toJSONString(subjectInfoBO));
         }
@@ -51,7 +51,6 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
         SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler((subjectInfo.getSubjectType()));
         handler.add(subjectInfoBO);
 
-        return null;
 
     }
 

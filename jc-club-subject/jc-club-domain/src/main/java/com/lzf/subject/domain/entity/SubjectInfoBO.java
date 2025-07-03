@@ -69,6 +69,8 @@ public class SubjectInfoBO extends PageInfo implements Serializable {
      */
     private List<SubjectAnswerBO> optionList;
 
+
+
     private Long categoryId;
 
     private Long labelId;

@@ -13,7 +13,6 @@ import java.io.Serializable;
  */
 @Data
 public class SubjectMultiple implements Serializable {
-    private static final long serialVersionUID = -21340353388542567L;
 /**
      * 主键
      */

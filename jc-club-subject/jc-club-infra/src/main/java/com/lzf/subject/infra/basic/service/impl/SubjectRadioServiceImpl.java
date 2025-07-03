@@ -6,6 +6,8 @@ import com.lzf.subject.infra.basic.service.SubjectRadioService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+
 /**
  * 单选题信息表(SubjectRadio)表服务实现类
  *
@@ -62,5 +64,15 @@ public class SubjectRadioServiceImpl implements SubjectRadioService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectRadioDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 批量插入数据
+     *
+     * @param subjectRadioList 实例对象
+     */
+    @Override
+    public void batchInsert(LinkedList<SubjectRadio> subjectRadioList) {
+        this.subjectRadioDao.insertBatch(subjectRadioList);
     }
 }

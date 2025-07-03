@@ -6,6 +6,8 @@ import com.lzf.subject.infra.basic.service.SubjectMultipleService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 多选题信息表(SubjectMultiple)表服务实现类
  *
@@ -62,5 +64,15 @@ public class SubjectMultipleServiceImpl implements SubjectMultipleService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectMultipleDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 批量插入数据
+     *
+     * @param subjectMultipleList 实例对象
+     */
+    @Override
+    public void batchInsert(List<SubjectMultiple> subjectMultipleList) {
+        this.subjectMultipleDao.insertBatch(subjectMultipleList);
     }
 }
