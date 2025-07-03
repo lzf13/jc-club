@@ -30,6 +30,7 @@ import java.util.List;
     @Override
     public void add(SubjectInfoBO subjectInfoBO) {
         //简答题的插入数据操作
+
         SubjectBrief subjectBrief = BriefSubjectConverter.INSTANCE.convertBoToEntity(subjectInfoBO);
         subjectBrief.setSubjectId(subjectInfoBO.getId());
         subjectBrief.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
