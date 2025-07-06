@@ -19,10 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,12 +31,11 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@RequestMapping("/subject")
 public class SubjectController {
 
-    @Resource
-    private SubjectCategoryService subjectCategoryService;
-    @Autowired
-    private SubjectAnswerDTOConverter subjectAnswerDTOConverter;
+
+
 
     @Resource
     private SubjectInfoDomainService subjectInfoDomainService;
@@ -77,6 +73,14 @@ public class SubjectController {
         }
 
     }
+
+    /**
+     * 查询题目列表，分页查询
+     * @param subjectInfoDTO
+     * @return
+     */
+
+
 
 
 

@@ -10,6 +10,7 @@ import com.lzf.subject.infra.basic.entity.SubjectJudge;
 import com.lzf.subject.infra.basic.entity.SubjectMultiple;
 import com.lzf.subject.infra.basic.service.SubjectJudgeService;
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +20,9 @@ import java.util.List;
  * @author luozhifeng
  * @version 1.0
  * @date 2025/6/30
- */public class JudgeTypeHandler implements SubjectTypeHandler{
+ */
+@Component
+public class JudgeTypeHandler implements SubjectTypeHandler{
 
      @Resource
      private SubjectJudgeService subjectJudgeService;

@@ -9,6 +9,7 @@ import com.lzf.subject.infra.basic.entity.SubjectBrief;
 import com.lzf.subject.infra.basic.entity.SubjectJudge;
 import com.lzf.subject.infra.basic.service.SubjectBriefService;
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +19,9 @@ import java.util.List;
  * @author luozhifeng
  * @version 1.0
  * @date 2025/6/30
- */public class BriefTypeHandler implements SubjectTypeHandler{
+ */
+@Component
+public class BriefTypeHandler implements SubjectTypeHandler{
      @Resource
      private SubjectBriefService subjectBriefService;
     // 多选题目的处理逻辑

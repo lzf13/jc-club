@@ -8,6 +8,7 @@ import com.lzf.subject.infra.basic.entity.SubjectInfo;
 import com.lzf.subject.infra.basic.entity.SubjectRadio;
 import com.lzf.subject.infra.basic.service.SubjectRadioService;
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  * @version 1.0
  * @date 2025/6/30
  */
+@Component
 public class RadioTypeHandler implements SubjectTypeHandler {
 
     @Resource

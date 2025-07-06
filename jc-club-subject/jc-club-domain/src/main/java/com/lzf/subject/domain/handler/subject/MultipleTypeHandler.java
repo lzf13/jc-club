@@ -7,6 +7,7 @@ import com.lzf.subject.domain.entity.SubjectInfoBO;
 import com.lzf.subject.infra.basic.entity.SubjectMultiple;
 import com.lzf.subject.infra.basic.service.SubjectMultipleService;
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +17,9 @@ import java.util.List;
  * @author luozhifeng
  * @version 1.0
  * @date 2025/6/30
- */public class MultipleTypeHandler implements SubjectTypeHandler{
+ */
+@Component
+public class MultipleTypeHandler implements SubjectTypeHandler{
     @Resource
     private SubjectMultipleService subjectMultipleService;
 

@@ -1,6 +1,7 @@
 package com.lzf.subject.infra.basic.mapper;
 
 import com.lzf.subject.infra.basic.entity.SubjectInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 

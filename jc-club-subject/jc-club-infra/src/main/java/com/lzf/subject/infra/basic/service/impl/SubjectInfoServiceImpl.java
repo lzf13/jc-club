@@ -4,6 +4,7 @@ import com.lzf.subject.infra.basic.entity.SubjectInfo;
 import com.lzf.subject.infra.basic.mapper.SubjectInfoDao;
 import com.lzf.subject.infra.basic.service.SubjectInfoService;
 import jakarta.annotation.Resource;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 /**
