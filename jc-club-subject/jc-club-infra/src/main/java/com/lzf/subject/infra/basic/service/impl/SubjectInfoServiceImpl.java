@@ -7,6 +7,8 @@ import jakarta.annotation.Resource;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 题目信息表(SubjectInfo)表服务实现类
  *
@@ -63,5 +65,32 @@ public class SubjectInfoServiceImpl implements SubjectInfoService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectInfoDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 通过条件查询数据
+     *
+     * @param subjectInfo 筛选条件
+     * @param categoryId 分类id
+     * @param labelId 标签id
+     *
+     **/
+    @Override
+    public int countByCondition(SubjectInfo subjectInfo, Long categoryId, Long labelId) {
+        return this.subjectInfoDao.countByCondition(subjectInfo, categoryId, labelId);
+    }
+
+    /**
+     * 通过条件查询数据
+     *
+     * @param subjectInfo 筛选条件
+     * @param categoryId 分类id
+     * @param labelId 标签id
+     * @param start 开始位置
+     * @param pageSize 每页大小
+     * **/
+    @Override
+    public List<SubjectInfo> queryPage(SubjectInfo subjectInfo, Long categoryId, Long labelId, int start, Integer pageSize) {
+        return this.subjectInfoDao.queryPage(subjectInfo, categoryId, labelId, start, pageSize);
     }
 }

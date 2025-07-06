@@ -6,6 +6,8 @@ import com.lzf.subject.domain.convert.JudgeSubjectConverter;
 import com.lzf.subject.domain.convert.MultipleSubjectConverter;
 import com.lzf.subject.domain.entity.SubjectAnswerBO;
 import com.lzf.subject.domain.entity.SubjectInfoBO;
+import com.lzf.subject.domain.entity.SubjectOptionBO;
+import com.lzf.subject.infra.basic.entity.SubjectBrief;
 import com.lzf.subject.infra.basic.entity.SubjectJudge;
 import com.lzf.subject.infra.basic.entity.SubjectMultiple;
 import com.lzf.subject.infra.basic.service.SubjectJudgeService;
@@ -26,6 +28,9 @@ public class JudgeTypeHandler implements SubjectTypeHandler{
 
      @Resource
      private SubjectJudgeService subjectJudgeService;
+
+
+
     // 判断题目的处理逻辑
     @Override
     public SubjectInfoTypeEnum getHandlerType() {
@@ -41,5 +46,15 @@ public class JudgeTypeHandler implements SubjectTypeHandler{
         subjectJudge.setIsCorrect(subjectAnswerBO.getIsCorrect());
         subjectJudge.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
         subjectJudgeService.insert(subjectJudge);
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+//        SubjectJudge subjectJudge = subjectJudgeService.queryById(Long.valueOf(subjectId));
+//        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+//        subjectOptionBO.setSubjectAnswer(subjectJudge.getSubjectAnswer());
+//
+//        return subjectOptionBO;
+        return null;
     }
 }

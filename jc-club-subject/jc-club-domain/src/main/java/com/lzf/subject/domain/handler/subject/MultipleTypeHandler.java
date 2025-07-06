@@ -4,6 +4,7 @@ import com.lzf.subject.common.enums.IsDeletedFlagEnum;
 import com.lzf.subject.common.enums.SubjectInfoTypeEnum;
 import com.lzf.subject.domain.convert.MultipleSubjectConverter;
 import com.lzf.subject.domain.entity.SubjectInfoBO;
+import com.lzf.subject.domain.entity.SubjectOptionBO;
 import com.lzf.subject.infra.basic.entity.SubjectMultiple;
 import com.lzf.subject.infra.basic.service.SubjectMultipleService;
 import jakarta.annotation.Resource;
@@ -47,5 +48,10 @@ public class MultipleTypeHandler implements SubjectTypeHandler{
         subjectMultipleService.batchInsert(subjectMultipleList);
 
 
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+        return null;
     }
 }

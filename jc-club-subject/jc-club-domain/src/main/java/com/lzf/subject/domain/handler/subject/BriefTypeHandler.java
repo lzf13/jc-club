@@ -5,6 +5,7 @@ import com.lzf.subject.common.enums.SubjectInfoTypeEnum;
 import com.lzf.subject.domain.convert.BriefSubjectConverter;
 import com.lzf.subject.domain.entity.SubjectAnswerBO;
 import com.lzf.subject.domain.entity.SubjectInfoBO;
+import com.lzf.subject.domain.entity.SubjectOptionBO;
 import com.lzf.subject.infra.basic.entity.SubjectBrief;
 import com.lzf.subject.infra.basic.entity.SubjectJudge;
 import com.lzf.subject.infra.basic.service.SubjectBriefService;
@@ -24,6 +25,7 @@ import java.util.List;
 public class BriefTypeHandler implements SubjectTypeHandler{
      @Resource
      private SubjectBriefService subjectBriefService;
+
     // 多选题目的处理逻辑
     @Override
     public SubjectInfoTypeEnum getHandlerType() {
@@ -40,5 +42,14 @@ public class BriefTypeHandler implements SubjectTypeHandler{
         subjectBriefService.insert(subjectBrief);
 
 
+    }
+
+    @Override
+    public SubjectOptionBO query(int subjectId) {
+        SubjectBrief subjectBrief = subjectBriefService.queryById(Long.valueOf(subjectId));
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setSubjectAnswer(subjectBrief.getSubjectAnswer());
+
+        return subjectOptionBO;
     }
 }

@@ -1,5 +1,6 @@
 package com.lzf.subject.application.dto;
 
+import com.lzf.subject.common.entity.PageInfo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.util.List;
  * @since 2025-06-30 19:36:56
  */
 @Data
-public class SubjectInfoDTO implements Serializable {
+public class SubjectInfoDTO extends PageInfo implements Serializable {
     /**
      * 主键
      */
@@ -68,6 +69,8 @@ public class SubjectInfoDTO implements Serializable {
      */
     private List<String> labelName;
 
+
+    //查询参数
     private Long categoryId;
 
     private Long labelId;
