@@ -35,7 +35,14 @@ spring:
 
 logging:
   config: classpath:log4j2-spring.xml
+  level:
+    com.lzf.subject.infra.basic.mapper: TRACE  # 最详细日志
+    org.apache.ibatis: DEBUG
 
 mybatis:
   mapper-locations: classpath*:mapper/**/*.xml  # 根据实际路径调整
   type-aliases-package: com.lzf.subject.infra.basic.entity  # 实体类包路径
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-sql: true
