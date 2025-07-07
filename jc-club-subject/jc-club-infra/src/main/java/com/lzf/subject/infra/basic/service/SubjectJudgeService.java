@@ -45,4 +45,11 @@ public interface SubjectJudgeService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param subjectJudge 实例对象
+     * @return 对象列表
+     */
+    List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge);
 }

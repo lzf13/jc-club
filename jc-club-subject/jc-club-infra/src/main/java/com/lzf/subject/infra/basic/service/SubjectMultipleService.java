@@ -51,4 +51,12 @@ public interface SubjectMultipleService {
      * @param subjectMultipleList 实例对象
      */
     void batchInsert(List<SubjectMultiple> subjectMultipleList);
+
+    /**
+     * 条件查询
+     *
+     * @param subjectMultiple 筛选条件
+     * @return 查询结果
+     */
+    List<SubjectMultiple> queryByCondition(SubjectMultiple subjectMultiple);
 }

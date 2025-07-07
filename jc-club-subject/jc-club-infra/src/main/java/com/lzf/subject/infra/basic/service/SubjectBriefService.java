@@ -43,4 +43,11 @@ public interface SubjectBriefService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * 通过条件查询数据
+     *
+     * @param subjectBrief 筛选条件
+     * @return 查询结果
+     */
+    SubjectBrief queryByCondition(SubjectBrief subjectBrief);
 }

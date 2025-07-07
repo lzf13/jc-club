@@ -4,7 +4,9 @@ import com.lzf.subject.infra.basic.entity.SubjectBrief;
 import com.lzf.subject.infra.basic.mapper.SubjectBriefDao;
 import com.lzf.subject.infra.basic.service.SubjectBriefService;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
  * @since 2025-06-30 19:37:16
  */
 @Service("subjectBriefService")
+@Slf4j
 public class SubjectBriefServiceImpl implements SubjectBriefService {
     @Resource
     private SubjectBriefDao subjectBriefDao;
@@ -26,7 +29,11 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
      */
     @Override
     public SubjectBrief queryById(Long id) {
-        return this.subjectBriefDao.queryById(id);
+//        return this.subjectBriefDao.queryById(id);
+        log.info("DAO查询ID: {}", id);
+        SubjectBrief brief = subjectBriefDao.queryById(id);
+        log.info("DAO返回结果: {}", brief != null ? brief.toString() : "NULL");
+        return brief;
     }
 
 
@@ -63,5 +70,17 @@ public class SubjectBriefServiceImpl implements SubjectBriefService {
     @Override
     public boolean deleteById(Long id) {
         return this.subjectBriefDao.deleteById(id) > 0;
+    }
+
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param subjectBrief 实例对象
+     * @return 对象列表
+     * @since 2025-06-30 19:37:16
+     * **/
+    @Override
+    public SubjectBrief queryByCondition(SubjectBrief subjectBrief) {
+        return this.subjectBriefDao.queryAllByLimit(subjectBrief);
     }
 }

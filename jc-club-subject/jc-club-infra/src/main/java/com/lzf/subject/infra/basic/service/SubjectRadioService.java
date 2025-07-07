@@ -3,6 +3,7 @@ package com.lzf.subject.infra.basic.service;
 import com.lzf.subject.infra.basic.entity.SubjectRadio;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 单选题信息表(SubjectRadio)表服务接口
@@ -51,4 +52,12 @@ public interface SubjectRadioService {
      * @param subjectRadioList 实例对象
      */
     void batchInsert(LinkedList<SubjectRadio> subjectRadioList);
+
+    /**
+     * 条件查询
+     *
+     * @param subjectRadio 筛选条件
+     * @return 查询结果
+     */
+    List<SubjectRadio> queryByCondition(SubjectRadio subjectRadio);
 }

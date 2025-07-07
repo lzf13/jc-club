@@ -7,6 +7,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 单选题信息表(SubjectRadio)表服务实现类
@@ -74,5 +75,16 @@ public class SubjectRadioServiceImpl implements SubjectRadioService {
     @Override
     public void batchInsert(LinkedList<SubjectRadio> subjectRadioList) {
         this.subjectRadioDao.insertBatch(subjectRadioList);
+    }
+
+    /**
+     * 查询多条数据
+     *
+     * @param subjectRadio 实例对象
+     * @return 对象列表
+     */
+    @Override
+    public List<SubjectRadio> queryByCondition(SubjectRadio subjectRadio) {
+        return this.subjectRadioDao.queryAllByLimit(subjectRadio);
     }
 }

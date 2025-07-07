@@ -26,7 +26,7 @@ public class BriefTypeHandler implements SubjectTypeHandler{
      @Resource
      private SubjectBriefService subjectBriefService;
 
-    // 多选题目的处理逻辑
+    // 简答题目的处理逻辑
     @Override
     public SubjectInfoTypeEnum getHandlerType() {
         return SubjectInfoTypeEnum.BRIEF;
@@ -46,10 +46,16 @@ public class BriefTypeHandler implements SubjectTypeHandler{
 
     @Override
     public SubjectOptionBO query(int subjectId) {
-        SubjectBrief subjectBrief = subjectBriefService.queryById(Long.valueOf(subjectId));
+//        SubjectBrief subjectBrief = subjectBriefService.queryById((long) subjectId);
+//        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+//        subjectOptionBO.setSubjectAnswer(subjectBrief.getSubjectAnswer());
+//
+//        return subjectOptionBO;
+        SubjectBrief subjectBrief = new SubjectBrief();
+        subjectBrief.setSubjectId((long) subjectId);
+        SubjectBrief result = subjectBriefService.queryByCondition(subjectBrief);
         SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
-        subjectOptionBO.setSubjectAnswer(subjectBrief.getSubjectAnswer());
-
+        subjectOptionBO.setSubjectAnswer(result.getSubjectAnswer());
         return subjectOptionBO;
     }
 }

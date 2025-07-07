@@ -23,6 +23,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -60,16 +61,16 @@ public class SubjectInfoDomainServiceImpl implements SubjectInfoDomainService {
      * @param subjectInfoBO
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void add(SubjectInfoBO subjectInfoBO) {
         if (log.isInfoEnabled()) {
-            log.info("SubjectController.add.bo:{}", JSON.toJSONString(subjectInfoBO));
+            log.info("SubjectInfoDomainServiceImpl.add.bo:{}", JSON.toJSONString(subjectInfoBO));
         }
-
         SubjectInfo subjectInfo = SubjectInfoConverter.INSTANCE.convertBoToInfo(subjectInfoBO);
+        subjectInfo.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
         subjectInfoService.insert(subjectInfo);
-
-        //
-        SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler((subjectInfo.getSubjectType()));
+        SubjectTypeHandler handler = subjectTypeHandlerFactory.getHandler(subjectInfo.getSubjectType());
+        subjectInfoBO.setId(subjectInfo.getId());
         handler.add(subjectInfoBO);
         List<Integer> categoryIds = subjectInfoBO.getCategoryIds();
         List<Integer> labelIds = subjectInfoBO.getLabelIds();

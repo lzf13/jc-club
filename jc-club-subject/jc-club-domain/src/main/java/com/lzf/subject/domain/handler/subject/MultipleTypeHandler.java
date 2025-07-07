@@ -2,9 +2,12 @@ package com.lzf.subject.domain.handler.subject;
 
 import com.lzf.subject.common.enums.IsDeletedFlagEnum;
 import com.lzf.subject.common.enums.SubjectInfoTypeEnum;
+import com.lzf.subject.domain.convert.JudgeSubjectConverter;
 import com.lzf.subject.domain.convert.MultipleSubjectConverter;
+import com.lzf.subject.domain.entity.SubjectAnswerBO;
 import com.lzf.subject.domain.entity.SubjectInfoBO;
 import com.lzf.subject.domain.entity.SubjectOptionBO;
+import com.lzf.subject.infra.basic.entity.SubjectJudge;
 import com.lzf.subject.infra.basic.entity.SubjectMultiple;
 import com.lzf.subject.infra.basic.service.SubjectMultipleService;
 import jakarta.annotation.Resource;
@@ -52,6 +55,12 @@ public class MultipleTypeHandler implements SubjectTypeHandler{
 
     @Override
     public SubjectOptionBO query(int subjectId) {
-        return null;
+        SubjectMultiple subjectMultiple = new SubjectMultiple();
+        subjectMultiple.setSubjectId((long) subjectId);
+        List<SubjectMultiple> result = subjectMultipleService.queryByCondition(subjectMultiple);
+        List<SubjectAnswerBO> subjectAnswerBOList = MultipleSubjectConverter.INSTANCE.convertEntityToBoList(result);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }

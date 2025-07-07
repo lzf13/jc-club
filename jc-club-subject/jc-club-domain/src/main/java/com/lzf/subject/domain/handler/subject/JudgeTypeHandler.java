@@ -41,7 +41,7 @@ public class JudgeTypeHandler implements SubjectTypeHandler{
     public void add(SubjectInfoBO subjectInfoBO) {
         //判断题目的插入
         SubjectJudge subjectJudge = new SubjectJudge();
-        SubjectAnswerBO subjectAnswerBO = subjectInfoBO.getOptionList().get(0);
+        SubjectAnswerBO subjectAnswerBO = subjectInfoBO.getOptionList().getFirst();
         subjectJudge.setSubjectId(subjectInfoBO.getId());
         subjectJudge.setIsCorrect(subjectAnswerBO.getIsCorrect());
         subjectJudge.setIsDeleted(IsDeletedFlagEnum.UN_DELETED.getCode());
@@ -55,6 +55,12 @@ public class JudgeTypeHandler implements SubjectTypeHandler{
 //        subjectOptionBO.setSubjectAnswer(subjectJudge.getSubjectAnswer());
 //
 //        return subjectOptionBO;
-        return null;
+        SubjectJudge subjectJudge = new SubjectJudge();
+        subjectJudge.setSubjectId((long) subjectId);
+        List<SubjectJudge> result = subjectJudgeService.queryByCondition(subjectJudge);
+        List<SubjectAnswerBO> subjectAnswerBOList = JudgeSubjectConverter.INSTANCE.convertEntityToBoList(result);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }

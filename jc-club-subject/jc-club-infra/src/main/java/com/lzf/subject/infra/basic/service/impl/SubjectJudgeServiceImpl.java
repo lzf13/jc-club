@@ -66,5 +66,16 @@ public class SubjectJudgeServiceImpl implements SubjectJudgeService {
         return this.subjectJudgeDao.deleteById(id) > 0;
     }
 
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param subjectJudge 实例对象
+     * @return 对象列表
+     */
+    @Override
+    public List<SubjectJudge> queryByCondition(SubjectJudge subjectJudge) {
+        return this.subjectJudgeDao.queryAllByLimit(subjectJudge);
+    }
+
 
 }

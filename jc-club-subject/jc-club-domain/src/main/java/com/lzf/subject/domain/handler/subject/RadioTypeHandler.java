@@ -2,10 +2,13 @@ package com.lzf.subject.domain.handler.subject;
 
 import com.lzf.subject.common.enums.IsDeletedFlagEnum;
 import com.lzf.subject.common.enums.SubjectInfoTypeEnum;
+import com.lzf.subject.domain.convert.MultipleSubjectConverter;
 import com.lzf.subject.domain.convert.RadioSubjectConverter;
+import com.lzf.subject.domain.entity.SubjectAnswerBO;
 import com.lzf.subject.domain.entity.SubjectInfoBO;
 import com.lzf.subject.domain.entity.SubjectOptionBO;
 import com.lzf.subject.infra.basic.entity.SubjectInfo;
+import com.lzf.subject.infra.basic.entity.SubjectMultiple;
 import com.lzf.subject.infra.basic.entity.SubjectRadio;
 import com.lzf.subject.infra.basic.service.SubjectRadioService;
 import jakarta.annotation.Resource;
@@ -55,6 +58,12 @@ public class RadioTypeHandler implements SubjectTypeHandler {
 
     @Override
     public SubjectOptionBO query(int subjectId) {
-        return null;
+        SubjectRadio subjectRadio = new SubjectRadio();
+        subjectRadio.setSubjectId((long) subjectId);
+        List<SubjectRadio> result = subjectRadioService.queryByCondition(subjectRadio);
+        List<SubjectAnswerBO> subjectAnswerBOList = RadioSubjectConverter.INSTANCE.convertEntityToBoList(result);
+        SubjectOptionBO subjectOptionBO = new SubjectOptionBO();
+        subjectOptionBO.setOptionList(subjectAnswerBOList);
+        return subjectOptionBO;
     }
 }
