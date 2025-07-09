@@ -117,6 +117,7 @@ public class SubjectController {
                 log.info("SubjectController.querySubjectInfo.dto:{}", JSON.toJSONString(subjectInfoDTO));
             }
             //这里可以用全局异常处理来做
+
             Preconditions.checkNotNull(subjectInfoDTO.getId(), "题目id不能为空");
 
             SubjectInfoBO subjectInfoBO = SubjectInfoDTOConverter.INSTANCE.convertDTOToBO(subjectInfoDTO);
