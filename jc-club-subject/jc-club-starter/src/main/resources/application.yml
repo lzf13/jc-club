@@ -39,10 +39,16 @@ logging:
     com.lzf.subject.infra.basic.mapper: TRACE  # 最详细日志
     org.apache.ibatis: DEBUG
 
+
 mybatis:
   mapper-locations: classpath*:mapper/**/*.xml  # 根据实际路径调整
   type-aliases-package: com.lzf.subject.infra.basic.entity  # 实体类包路径
-#mybatis-plus:
+
+#  这里主要是对于sql语句的调试输出的配置，这里通过固定的配置类也可以实现，见infra层下的config的MybatisConfiguration
 #  configuration:
+#    # 关键配置：强制原生SQL输出（即使通过代理）
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    # 显示参数值
 #    log-sql: true
+
+
